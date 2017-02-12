@@ -26,8 +26,8 @@ The following instructions deploy Mattermost in a production configuration using
       - MATTERMOST_ENABLE_SSL=true
     ```
 
-2. Put your SSL certificate as `./volumes/cert/cert.pem` and the private key that has
-   no password as `./volumes/cert/key-no-password.pem`. If you don't have
+2. Put your SSL certificate as `./volumes/web/cert/cert.pem` and the private key that has
+   no password as `./volumes/web/cert/key-no-password.pem`. If you don't have
    them you may generate a self-signed SSL certificate.
 
 3. Build and run mattermost
@@ -73,7 +73,7 @@ The following instructions deploy Mattermost in a production configuration using
 
 ## Database Backup
 
-When AWS S3 environment variables are specified on db docker container, it enables [Wel-E](https://github.com/wal-e/wal-e) backup to S3.
+When AWS S3 environment variables are specified on db docker container, it enables [Wal-E](https://github.com/wal-e/wal-e) backup to S3.
 
 ```bash
 docker run -d --name mattermost-db \
@@ -119,8 +119,10 @@ See the [offical Upgrade Guide](http://docs.mattermost.com/administration/upgrad
 If you want to know how to use docker-compose, see [the overview
 page](https://docs.docker.com/compose).
 
+If you want to run Mattermost on Kubernetes you can start with the [manifest examples in the kubernetes folder](contrib/kubernetes/README.md)
+
 For the server configurations, see [prod-ubuntu.rst] of mattermost.
 
 [docker]: http://docs.docker.com/engine/installation/
 [docker-compose]: https://docs.docker.com/compose/install/
-[prod-ubuntu.rst]: https://github.com/mattermost/docs/blob/master/source/install/prod-ubuntu.rst
+[prod-ubuntu.rst]: https://docs.mattermost.com/install/install-ubuntu-1404.html

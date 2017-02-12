@@ -1,6 +1,6 @@
-FROM alpine:3.3
+FROM alpine:3.5
 
-RUN apk add --update nginx && rm -rf /var/cache/apk/*
+RUN apk add --update --no-cache nginx && rm -rf /var/cache/apk/*
 
 RUN rm /etc/nginx/sites-enabled/default
 
