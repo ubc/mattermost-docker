@@ -2,10 +2,10 @@ FROM alpine:3.5
 
 RUN apk add --update --no-cache nginx && rm -rf /var/cache/apk/*
 
-RUN rm /etc/nginx/sites-enabled/default
+RUN rm /etc/nginx/conf.d/default.conf
 
-COPY mattermost /etc/nginx/sites-available/
-COPY mattermost-ssl /etc/nginx/sites-available/
+COPY mattermost /etc/nginx/conf.d/
+COPY mattermost-ssl /etc/nginx/conf.d/
 ADD docker-entry.sh /
 
 RUN chmod +x /docker-entry.sh
