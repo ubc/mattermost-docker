@@ -55,16 +55,11 @@ if [ "$1" = 'platform' ]; then
     export MM_SQLSETTINGS_DATASOURCE="postgres://$MM_USERNAME:$MM_PASSWORD@$DB_HOST:$DB_PORT_NUMBER/$MM_DBNAME?sslmode=disable&connect_timeout=10"
     echo OK
 
-    echo "Wait until database $DB_HOST:$DB_PORT_NUMBER is ready..."
-    until nc -z $DB_HOST $DB_PORT_NUMBER
-    do
-        sleep 1
-    done
+    #while ! timeout 1 bash -c "(cat < /dev/null > /dev/tcp/$DB_HOST/$DB_PORT_NUMBER) >/dev/null 2>&1"; do sleep 0.5; done
 
     # Wait to avoid "panic: Failed to open sql connection pq: the database system is starting up"
-    sleep 1
-
     echo "Starting platform"
+    echo "...."
 fi
 
 exec "$@"

@@ -9,7 +9,6 @@ RUN apt-get update \
     && apt-get -y install \
       curl \
       jq \
-      netcat \
     && rm -rf /var/lib/apt/lists/*
 
 # Prepare Mattermost
