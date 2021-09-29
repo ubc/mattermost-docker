@@ -202,8 +202,8 @@ mkdir -p ./volumes/app/mattermost/{data,logs,config,plugins}
 chown -R 2000:2000 ./volumes/app/mattermost/
 ```
 
-The second important change is the port used by Mattermost application container. The default port is now `8000`, and existing installations that use port `80` will not work without a little configuration change. You have to open your Mattermost configuration file (`./volumes/app/mattermost/config/config.json` by default) and change the key `ServiceSettings.ListenAddress` to `:8000`.
-Also if you use your own web-server/reverse-proxy you need to change its configuration to reach port `8000` of the Mattermost container.
+The second important change is the port used by Mattermost application container. The default port is now `8065`, and existing installations that use port `80` will not work without a little configuration change. You have to open your Mattermost configuration file (`./volumes/app/mattermost/config/config.json` by default) and change the key `ServiceSettings.ListenAddress` to `:8000`.
+Also if you use your own web-server/reverse-proxy you need to change its configuration to reach port `8065` of the Mattermost container.
 
 
 ## Upgrading to Team Edition 3.0.x from 2.x

@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.14
 
 # Some ENV variables
 ENV PATH="/mattermost/bin:${PATH}"
@@ -9,7 +9,7 @@ ARG edition=enterprise
 ARG PUID=2000
 ARG PGID=2000
 ARG MM_BINARY=
-ARG MM_VERSION=5.36.0
+ARG MM_VERSION=5.37.2
 
 
 # Install some needed packages
@@ -25,6 +25,9 @@ RUN apk add --no-cache \
 	netcat-openbsd \
 	xmlsec-dev \
 	tzdata \
+    wv \
+    poppler-utils \
+    tidyhtml \
 	&& rm -rf /tmp/*
 
 # Get Mattermost
@@ -42,7 +45,8 @@ RUN mkdir -p /mattermost/data /mattermost/plugins /mattermost/client/plugins \
 USER mattermost
 
 #Healthcheck to make sure container is ready
-HEALTHCHECK CMD curl --fail http://localhost:8000 || exit 1
+HEALTHCHECK --interval=30s --timeout=10s \
+  CMD curl -f http://localhost:8065/api/v4/system/ping || exit 1
 
 # Configure entrypoint and command
 COPY entrypoint.sh /
@@ -50,8 +54,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 WORKDIR /mattermost
 CMD ["mattermost"]
 
-# Expose port 8000 of the container
-EXPOSE 8000
+EXPOSE 8065 8067 8074 8075
 
 # Declare volumes for mount point directories
 VOLUME ["/mattermost/data", "/mattermost/logs", "/mattermost/config", "/mattermost/plugins", "/mattermost/client/plugins"]
