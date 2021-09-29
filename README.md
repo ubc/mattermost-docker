@@ -1,9 +1,11 @@
 # Production Docker deployment for Mattermost
 
-|![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Warning.svg/156px-Warning.svg.png) | This project is no longer supported.
-|---|---|
 
 ## NOTE: 
+This repo is forked and updated because upstream repo is not being maintained anymore and Mattermost official repo and matching Helm charts are still under development and [not up to speed yet](https://github.com/mattermost/mattermost-helm/issues/253). We will continue maintain this repo until the official repo catches up.
+
+Please note that our effort will only focus on the app image as it is the only component we are using in our K8S setup. The matching Helm chart can be found [here](https://github.com/ubc/charts/tree/master/mattermost).
+
 This repository has been a community-driven effort created when running Docker containers was just getting popular. This repository produced three images: one for Mattermost itself, another for Database, and for the Web Proxy.
 
 We will no longer support those three images. If you have a Mattermost server running with the image mattermost/mattermost-prod-app, we recommend migrating either to mattermost/mattermost-enterprise-edition or mattermost/mattermost-team-edition images, which are the official ones and supported by Mattermost. These images support Postgres 10+ database, which we know has been a long-running challenge for the community, and you will not lose any features or functionality by moving to these new images.
@@ -21,8 +23,6 @@ The current state of this repository doesn't work out-of-the box since Mattermos
 We're actively working on a fix to this repository. Until then, please refer to these upgrade instructions: https://github.com/mattermost/mattermost-docker/issues/489#issuecomment-790277661
 
 This project enables a deployment of a Mattermost server in a multi-node production configuration using Docker.
-
-[![Build Status](https://travis-ci.org/mattermost/mattermost-docker.svg?branch=master)](https://travis-ci.org/mattermost/mattermost-docker)
 
 Notes:
 - The default Mattermost edition for this repo has changed from Team Edition to Enterprise Edition. Please see [Choose Edition](#choose-edition-to-install) section.
