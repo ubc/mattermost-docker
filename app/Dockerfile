@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine:3.20
 
 # Some ENV variables
 ENV PATH="/mattermost/bin:${PATH}"
@@ -28,6 +28,7 @@ RUN apk add --no-cache \
     wv \
     poppler-utils \
     tidyhtml \
+    gcompat \
 	&& rm -rf /tmp/*
 
 # Get Mattermost
