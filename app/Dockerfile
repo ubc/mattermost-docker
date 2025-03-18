@@ -9,7 +9,7 @@ ARG edition=enterprise
 ARG PUID=2000
 ARG PGID=2000
 ARG MM_BINARY=
-ARG MM_VERSION=9.11.6
+ARG MM_VERSION=9.11.10
 
 
 # Install some needed packages
